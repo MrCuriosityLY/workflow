@@ -1,0 +1,4 @@
+interface:
+  display_name: "QMS Dev Flow"
+  short_description: "Analyze, specify, design, implement, and verify qms-lab-control changes."
+  default_prompt: "Use QMS dev-flow for this qms-lab-control task."

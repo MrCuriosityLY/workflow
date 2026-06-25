@@ -1,0 +1,20 @@
+{
+  "name": "qms-workflows",
+  "interface": {
+    "displayName": "QMS Workflows"
+  },
+  "plugins": [
+    {
+      "name": "qms-dev-workflow",
+      "source": {
+        "source": "local",
+        "path": "./plugins/qms-dev-workflow"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

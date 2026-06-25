@@ -1,0 +1,4 @@
+interface:
+  display_name: "QMS SQL Full"
+  short_description: "Keep QMS SQL migrations and full.sql synchronized."
+  default_prompt: "Check QMS SQL changes and full.sql synchronization."

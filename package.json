@@ -1,0 +1,25 @@
+{
+  "name": "@your-scope/qms-dev-workflow",
+  "version": "1.0.0",
+  "description": "npm installer for the QMS Codex workflow plugin marketplace.",
+  "private": false,
+  "type": "commonjs",
+  "bin": {
+    "qms-dev-workflow": "./bin/qms-dev-workflow.js"
+  },
+  "files": [
+    "AGENTS.md",
+    "README.md",
+    ".agents/",
+    "plugins/",
+    "bin/",
+    "lib/"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}

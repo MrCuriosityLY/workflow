@@ -1,0 +1,20 @@
+{
+  "name": "qms-dev-workflow",
+  "version": "1.0.0",
+  "description": "QMS lab-control development workflow skills with dev-flow phases, Superpowers-style engineering discipline, OpenSpec-style change specs, and project conventions.",
+  "author": {
+    "name": "QMS Engineering"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "QMS Dev Workflow",
+    "shortDescription": "Develop qms-lab-control features with staged specs, code conventions, SQL sync rules, and verification.",
+    "longDescription": "A Codex workflow plugin for qms-lab-control. It packages QMS-specific dev-flow guidance, OpenSpec-style change management, Superpowers-inspired design/TDD/debug/verification habits, and lab-control architecture references.",
+    "developerName": "QMS Engineering",
+    "category": "Productivity",
+    "capabilities": [
+      "skills"
+    ],
+    "defaultPrompt": "Use $qms-dev-flow to analyze, design, implement, and verify this qms-lab-control change."
+  }
+}

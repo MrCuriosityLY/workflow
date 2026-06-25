@@ -1,0 +1,4 @@
+interface:
+  display_name: "QMS OpenSpec"
+  short_description: "Create and validate OpenSpec-style QMS change proposals and spec deltas."
+  default_prompt: "Use QMS OpenSpec to create a specification for this change."
