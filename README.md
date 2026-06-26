@@ -11,40 +11,26 @@ Codex plugin marketplace for `qms-lab-control` development. It packages QMS-spec
 
 ## Install With npm
 
-Before publishing, replace `@your-scope/qms-dev-workflow` in `package.json` with your real npm package name.
-
-Global user install:
-
 ```bash
-npm i -g @your-scope/qms-dev-workflow
+npm install -g github:MrCuriosityLY/workflow
 qms-dev-workflow install
 qms-dev-workflow doctor
 ```
 
-This copies the plugin to `~/.codex/plugins/qms-dev-workflow` and updates `~/.agents/plugins/marketplace.json`.
+This installs the workflow package from [MrCuriosityLY/workflow](https://github.com/MrCuriosityLY/workflow), copies the plugin to `~/.codex/plugins/qms-dev-workflow`, and updates `~/.agents/plugins/marketplace.json`.
 
-Project-scoped install:
+If PowerShell blocks `npm.ps1`, run the same command with `npm.cmd` instead:
 
-```bash
-npx @your-scope/qms-dev-workflow init
-qms-dev-workflow doctor --project
+```powershell
+npm.cmd install -g github:MrCuriosityLY/workflow
 ```
-
-This creates:
-
-```text
-./plugins/qms-dev-workflow
-./.agents/plugins/marketplace.json
-```
-
-Commit those generated files when the workflow should travel with a project repository.
 
 ## Enable In Codex
 
 After installation:
 
 1. Restart Codex if the plugin does not appear immediately.
-2. Open the plugin browser with:
+2. Open Plugins in the Codex app, or start Codex CLI and open the plugin browser with:
 
 ```text
 /plugins
@@ -74,25 +60,17 @@ You can also describe the task naturally. Codex may choose the skill when the re
 Analyze this QMS requirement and create an OpenSpec-style proposal before implementation.
 ```
 
-## Install From GitHub
-
-After pushing this folder as a GitHub repository:
-
-```bash
-codex plugin marketplace add <owner>/<repo>
-```
-
-Then open Codex and run `/plugins` to install `qms-dev-workflow`.
-
 ## Install Locally For Testing
 
 From this repository root:
 
 ```bash
-codex plugin marketplace add .
+npm install -g .
+qms-dev-workflow install
+qms-dev-workflow doctor
 ```
 
-Restart Codex if the marketplace does not appear immediately.
+Restart Codex if the plugin does not appear immediately.
 
 ## Contents
 
@@ -115,40 +93,26 @@ Restart Codex if the marketplace does not appear immediately.
 
 ## 使用 npm 安装
 
-发布前，请先把 `package.json` 里的 `@your-scope/qms-dev-workflow` 改成你的真实 npm 包名。
-
-全局安装到当前用户：
-
 ```bash
-npm i -g @your-scope/qms-dev-workflow
+npm install -g github:MrCuriosityLY/workflow
 qms-dev-workflow install
 qms-dev-workflow doctor
 ```
 
-这会把插件复制到 `~/.codex/plugins/qms-dev-workflow`，并更新 `~/.agents/plugins/marketplace.json`。
+这会从 [MrCuriosityLY/workflow](https://github.com/MrCuriosityLY/workflow) 安装工作流包，把插件复制到 `~/.codex/plugins/qms-dev-workflow`，并更新 `~/.agents/plugins/marketplace.json`。
 
-安装到当前项目仓库：
+如果 PowerShell 拦截了 `npm.ps1`，把第一行改成 `npm.cmd` 即可：
 
-```bash
-npx @your-scope/qms-dev-workflow init
-qms-dev-workflow doctor --project
+```powershell
+npm.cmd install -g github:MrCuriosityLY/workflow
 ```
-
-这会生成：
-
-```text
-./plugins/qms-dev-workflow
-./.agents/plugins/marketplace.json
-```
-
-如果希望团队成员在这个仓库里都能使用同一套工作流，可以把这些文件提交到项目仓库。
 
 ## 在 Codex 中启用
 
 安装完成后：
 
 1. 如果插件没有立即出现，先重启 Codex。
-2. 在 Codex 中打开插件列表：
+2. 在 Codex 桌面端打开 Plugins 页面，或启动 Codex CLI 后用下面的指令打开插件列表：
 
 ```text
 /plugins
@@ -178,25 +142,17 @@ $qms-sql-full check SQL sync
 分析这个 QMS 需求，先生成 OpenSpec 风格的 proposal，再进入设计和开发。
 ```
 
-## 通过 GitHub 安装
-
-把这个目录推送到 GitHub 仓库后：
-
-```bash
-codex plugin marketplace add <owner>/<repo>
-```
-
-然后在 Codex 中运行 `/plugins`，安装 `qms-dev-workflow`。
-
 ## 本地测试安装
 
 在本仓库根目录运行：
 
 ```bash
-codex plugin marketplace add .
+npm install -g .
+qms-dev-workflow install
+qms-dev-workflow doctor
 ```
 
-如果 marketplace 没有立即出现，重启 Codex。
+如果插件没有立即出现，重启 Codex。
 
 ## 内容说明
 
