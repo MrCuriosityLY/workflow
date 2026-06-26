@@ -1,6 +1,8 @@
-# QMS Codex Workflow Plugin
+# QMS Agent Workflow Package
 
-This repository is a Codex plugin marketplace for QMS development workflows.
+This repository packages reusable QMS development workflows for multiple coding
+agents. The generic workflow is plain Markdown under `workflows/`, while the
+Codex plugin under `plugins/` is an optional adapter.
 
 ## Editing Rules
 
@@ -13,8 +15,9 @@ This repository is a Codex plugin marketplace for QMS development workflows.
 
 ## Layout
 
-- `.agents/plugins/marketplace.json`: marketplace catalog entry.
-- `plugins/qms-dev-workflow`: installable Codex plugin.
-- `plugins/qms-dev-workflow/skills/qms-dev-flow`: main QMS workflow.
-- `plugins/qms-dev-workflow/skills/qms-openspec`: OpenSpec-style change/spec lifecycle.
-- `plugins/qms-dev-workflow/skills/qms-sql-full`: SQL/full.sql synchronization rule.
+- `workflows/qms-dev-workflow`: generic Markdown workflow for coding agents.
+- `.agents/plugins/marketplace.json`: optional Codex marketplace catalog entry.
+- `plugins/qms-dev-workflow`: optional installable Codex plugin adapter.
+- `plugins/qms-dev-workflow/skills/qms-dev-flow`: Codex skill adapter for the main QMS workflow.
+- `plugins/qms-dev-workflow/skills/qms-openspec`: Codex skill adapter for OpenSpec-style change/spec lifecycle.
+- `plugins/qms-dev-workflow/skills/qms-sql-full`: Codex skill adapter for SQL/full.sql synchronization.

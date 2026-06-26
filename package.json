@@ -1,7 +1,7 @@
 {
   "name": "qms-dev-workflow",
   "version": "1.0.0",
-  "description": "npm installer for the QMS Codex workflow plugin marketplace.",
+  "description": "Generic QMS development workflow installer for coding agents, with optional Codex plugin support.",
   "private": false,
   "type": "commonjs",
   "bin": {
@@ -11,6 +11,7 @@
     "AGENTS.md",
     "README.md",
     ".agents/",
+    "workflows/",
     "plugins/",
     "bin/",
     "lib/"

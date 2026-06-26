@@ -1,161 +1,231 @@
-# QMS Codex Workflow
+# QMS Agent Workflow
 
 English | [中文](#中文)
 
-Codex plugin marketplace for `qms-lab-control` development. It packages QMS-specific workflow skills based on:
+Reusable QMS development workflow instructions for coding agents. The npm
+package installs plain Markdown workflow files into a project so Codex, Claude
+Code, Gemini CLI, GitHub Copilot, Cursor, and other agents can all read the
+same guidance.
 
-- existing `dev-flow` staged development practice,
-- `qms-lab-control` architecture and coding conventions,
-- Superpowers-style discipline for design, TDD, debugging, and verification,
-- OpenSpec-style change proposals, task lists, and spec deltas.
+It also keeps optional Codex plugin support for users who want a native Codex
+plugin experience.
 
 ## Install With npm
 
+From the project where you want agents to use the workflow:
+
 ```bash
 npm install -g github:MrCuriosityLY/workflow
-qms-dev-workflow install
+qms-dev-workflow init
 qms-dev-workflow doctor
 ```
 
-This installs the workflow package from [MrCuriosityLY/workflow](https://github.com/MrCuriosityLY/workflow), copies the plugin to `~/.codex/plugins/qms-dev-workflow`, and updates `~/.agents/plugins/marketplace.json`.
+This creates or updates:
 
-If PowerShell blocks `npm.ps1`, run the same command with `npm.cmd` instead:
+```text
+.agent-workflows/qms-dev-workflow/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.github/copilot-instructions.md
+.cursor/rules/qms-dev-workflow.mdc
+.claude/commands/
+.gemini/commands/qms/
+```
+
+The agent entrypoint files keep a small managed block that points to the shared
+workflow under `.agent-workflows/qms-dev-workflow/`. Existing content outside
+that managed block is preserved.
+
+For agents with project-level slash command support, the installer also creates
+command adapters:
+
+- Claude Code: `/qms`, `/qms-analyze`, `/qms-design`, `/qms-develop`,
+  `/qms-test`, `/qms-fix`, `/qms-openspec`, `/qms-sql-full`
+- Gemini CLI: `/qms:workflow`, `/qms:analyze`, `/qms:design`,
+  `/qms:develop`, `/qms:test`, `/qms:fix`, `/qms:openspec`,
+  `/qms:sql-full`
+
+GitHub Copilot and Cursor receive project instruction/rule files. Their `/`
+menu behavior depends on the client version and supported extension features.
+
+If PowerShell blocks `npm.ps1`, run the npm command with `npm.cmd` instead:
 
 ```powershell
 npm.cmd install -g github:MrCuriosityLY/workflow
 ```
 
-## Enable In Codex
+## Use The Workflow
 
-After installation:
+Ask your agent naturally:
 
-1. Restart Codex if the plugin does not appear immediately.
-2. Open Plugins in the Codex app, or start Codex CLI and open the plugin browser with:
+```text
+Use the QMS development workflow to analyze this requirement and prepare a spec.
+```
+
+```text
+Follow the QMS workflow, implement the confirmed design, update tests, and verify.
+```
+
+The installed workflow includes:
+
+- `AGENT_WORKFLOW.md`: end-to-end QMS development workflow.
+- `qms-openspec.md`: OpenSpec-style change/spec lifecycle.
+- `qms-sql-full.md`: SQL migration and `full.sql` synchronization rule.
+
+In supported slash-command agents, you can also type `/` and choose the
+installed command, for example `/qms-analyze` in Claude Code or `/qms:analyze`
+in Gemini CLI.
+
+## Optional Codex Plugin
+
+If you also want the native Codex plugin marketplace integration:
+
+```bash
+qms-dev-workflow install-codex
+qms-dev-workflow doctor --codex
+```
+
+For a repo-scoped Codex plugin install:
+
+```bash
+qms-dev-workflow init-codex
+qms-dev-workflow doctor --codex --project
+```
+
+After installing the Codex plugin, restart Codex if it does not appear
+immediately. Open Plugins in the Codex app, or start Codex CLI and use:
 
 ```text
 /plugins
 ```
 
-3. Install or enable `qms-dev-workflow`.
-4. Start a new thread in your QMS repository.
-
-## Use The Workflow
-
-Invoke skills explicitly:
-
-```text
-$qms-dev-flow research
-$qms-dev-flow analyze <your requirement>
-$qms-dev-flow design <your requirement>
-$qms-dev-flow develop <confirmed design>
-$qms-dev-flow test
-$qms-dev-flow fix <error or failing test>
-$qms-openspec create spec for <change>
-$qms-sql-full check SQL sync
-```
-
-You can also describe the task naturally. Codex may choose the skill when the request matches its description:
-
-```text
-Analyze this QMS requirement and create an OpenSpec-style proposal before implementation.
-```
-
-## Install Locally For Testing
+## Local Development
 
 From this repository root:
 
 ```bash
 npm install -g .
-qms-dev-workflow install
+qms-dev-workflow init
 qms-dev-workflow doctor
 ```
 
-Restart Codex if the plugin does not appear immediately.
+Run tests:
 
-## Contents
-
-- `qms-dev-flow`: end-to-end QMS development workflow.
-- `qms-openspec`: specification-first change workflow compatible with OpenSpec-style folders.
-- `qms-sql-full`: SQL migration and `full.sql` synchronization guardrail.
+```bash
+npm test
+```
 
 ---
 
 # 中文
 
-[English](#qms-codex-workflow) | 中文
+[English](#qms-agent-workflow) | 中文
 
-这是一个面向 `qms-lab-control` 的 Codex 插件市场项目，用来沉淀 QMS 项目的开发工作流。它融合了：
+这是一个面向 QMS 开发的通用 agent 工作流包。它通过 npm 把纯 Markdown
+工作流安装到目标项目中，让 Codex、Claude Code、Gemini CLI、GitHub
+Copilot、Cursor 和其他 coding agent 都能读取同一套规则。
 
-- 当前项目已有的 `dev-flow` 分阶段开发模式；
-- `qms-lab-control` 的架构、模块边界和代码规范；
-- Superpowers 风格的设计、TDD、系统化调试和完成前验证纪律；
-- OpenSpec 风格的变更提案、任务拆分、设计文档和规格增量。
+同时，它也保留了可选的 Codex 插件支持，方便需要 Codex 原生插件体验的用户使用。
 
 ## 使用 npm 安装
 
+在需要使用该工作流的项目根目录运行：
+
 ```bash
 npm install -g github:MrCuriosityLY/workflow
-qms-dev-workflow install
+qms-dev-workflow init
 qms-dev-workflow doctor
 ```
 
-这会从 [MrCuriosityLY/workflow](https://github.com/MrCuriosityLY/workflow) 安装工作流包，把插件复制到 `~/.codex/plugins/qms-dev-workflow`，并更新 `~/.agents/plugins/marketplace.json`。
+这会创建或更新：
 
-如果 PowerShell 拦截了 `npm.ps1`，把第一行改成 `npm.cmd` 即可：
+```text
+.agent-workflows/qms-dev-workflow/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.github/copilot-instructions.md
+.cursor/rules/qms-dev-workflow.mdc
+.claude/commands/
+.gemini/commands/qms/
+```
+
+这些 agent 入口文件只会写入一小段受管理的说明，并指向
+`.agent-workflows/qms-dev-workflow/` 下的共享工作流。受管理区块之外的已有内容会保留。
+
+对于支持项目级 slash command 的 agent，安装器还会生成命令适配文件：
+
+- Claude Code：`/qms`、`/qms-analyze`、`/qms-design`、`/qms-develop`、
+  `/qms-test`、`/qms-fix`、`/qms-openspec`、`/qms-sql-full`
+- Gemini CLI：`/qms:workflow`、`/qms:analyze`、`/qms:design`、
+  `/qms:develop`、`/qms:test`、`/qms:fix`、`/qms:openspec`、
+  `/qms:sql-full`
+
+GitHub Copilot 和 Cursor 会收到项目说明/规则文件。它们的 `/` 菜单行为取决于当前客户端版本和扩展能力。
+
+如果 PowerShell 拦截了 `npm.ps1`，把 npm 命令改成 `npm.cmd` 即可：
 
 ```powershell
 npm.cmd install -g github:MrCuriosityLY/workflow
 ```
 
-## 在 Codex 中启用
+## 使用工作流
 
-安装完成后：
+可以直接用自然语言要求 agent 使用该工作流：
 
-1. 如果插件没有立即出现，先重启 Codex。
-2. 在 Codex 桌面端打开 Plugins 页面，或启动 Codex CLI 后用下面的指令打开插件列表：
+```text
+Use the QMS development workflow to analyze this requirement and prepare a spec.
+```
+
+```text
+Follow the QMS workflow, implement the confirmed design, update tests, and verify.
+```
+
+安装后的工作流包含：
+
+- `AGENT_WORKFLOW.md`：QMS 端到端开发工作流。
+- `qms-openspec.md`：OpenSpec 风格的变更和规格生命周期。
+- `qms-sql-full.md`：SQL 迁移脚本和 `full.sql` 同步规则。
+
+在支持 slash command 的 agent 中，也可以输入 `/` 选择安装好的命令，例如
+Claude Code 里的 `/qms-analyze`，或 Gemini CLI 里的 `/qms:analyze`。
+
+## 可选 Codex 插件
+
+如果还需要 Codex 原生插件市场集成：
+
+```bash
+qms-dev-workflow install-codex
+qms-dev-workflow doctor --codex
+```
+
+如果要安装到当前仓库作为 repo-scoped Codex 插件：
+
+```bash
+qms-dev-workflow init-codex
+qms-dev-workflow doctor --codex --project
+```
+
+安装 Codex 插件后，如果插件没有立即出现，先重启 Codex。可以在 Codex
+桌面端打开 Plugins 页面，或启动 Codex CLI 后使用：
 
 ```text
 /plugins
 ```
 
-3. 安装或启用 `qms-dev-workflow`。
-4. 在 QMS 项目仓库里新开一个线程使用。
-
-## 使用工作流
-
-推荐显式调用 skill：
-
-```text
-$qms-dev-flow research
-$qms-dev-flow analyze <你的需求>
-$qms-dev-flow design <你的需求>
-$qms-dev-flow develop <已确认的设计>
-$qms-dev-flow test
-$qms-dev-flow fix <错误信息或失败测试>
-$qms-openspec create spec for <变更>
-$qms-sql-full check SQL sync
-```
-
-也可以直接用自然语言描述任务，Codex 会在匹配到 skill 描述时自动选择：
-
-```text
-分析这个 QMS 需求，先生成 OpenSpec 风格的 proposal，再进入设计和开发。
-```
-
-## 本地测试安装
+## 本地开发
 
 在本仓库根目录运行：
 
 ```bash
 npm install -g .
-qms-dev-workflow install
+qms-dev-workflow init
 qms-dev-workflow doctor
 ```
 
-如果插件没有立即出现，重启 Codex。
+运行测试：
 
-## 内容说明
-
-- `qms-dev-flow`：QMS 端到端开发工作流。
-- `qms-openspec`：兼容 OpenSpec 风格目录的规格驱动变更流程。
-- `qms-sql-full`：SQL 迁移脚本和 `full.sql` 同步规则。
+```bash
+npm test
+```
